@@ -8,6 +8,17 @@ sudo apt-get install -y ros-noetic-joint-state-publisher-gui
 sudo apt-get install -y ros-noetic-rqt-robot-steering 
 sudo apt-get install -y ros-noetic-teleop-twist-keyboard 
 ```
+```
+cd ~
+rm -rf -- catkin_ws_BAK
+mkdir -p catkin_ws/src
+cd catkin_ws/src
+git clone https://github.com/agilexrobotics/ugv_gazebo_sim.git
+git clone https://github.com/HMI2-Research-Group/mycobot_hand_scripts.git
+cd ..
+catkin build
+source ~/.bashrc
+roslaunch limo_gazebo_sim limo_ackerman.launch world_name:=willowgarage.world
 rosrun teleop_twist_keyboard teleop_twist_keyboard.py 
 ```
 rostopic echo /clicked_point
