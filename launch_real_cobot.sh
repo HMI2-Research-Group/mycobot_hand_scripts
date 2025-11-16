@@ -1,4 +1,8 @@
 #!/bin/bash
+# Add this to your bashrc to always run the updated code
+# start_cobot() {
+#   curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
+# }
 echo "agx" | sudo -S killall screen
 sleep 5
 screen -S base_teleop -dm roslaunch limo_base limo_base.launch
