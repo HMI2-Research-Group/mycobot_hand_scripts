@@ -1,4 +1,6 @@
 #!/bin/bash
+echo "agx" | sudo -S killall screen
+sleep 5
 screen -S base_teleop -dm roslaunch limo_base limo_base.launch
 sleep 5
 screen -S camera -dm roslaunch astra_camera dabai_u3.launch
@@ -8,3 +10,4 @@ sleep 3
 screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
 sleep 5
 screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
+echo "All processes started"
