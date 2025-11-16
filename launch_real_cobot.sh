@@ -1,0 +1,6 @@
+#!/bin/bash
+screen -S base_teleop -dm roslaunch limo_base limo_base.launch
+screen -S camera -dm roslaunch astra_camera dabai_u3.launch
+screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
+screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
+screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
