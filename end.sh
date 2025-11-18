@@ -47,7 +47,7 @@ oo888888888888888888888b._            ______...ooo88888888888888P'  .8888888888
 
 
 
-Fine 007, here is your robot
+Fine 007, here is your robot the MI6 promised you. Take good care of it, it might save your life one day...
 
      0000             0000        7777777777777777/========___________
    00000000         00000000      7777^^^^^^^7777/ || ||   ___________
