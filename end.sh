@@ -45,7 +45,7 @@ oo888888888888888888888b._            ______...ooo88888888888888P'  .8888888888
 8888888888888888888888888888              .d888888888888888+'   .d8888888888888
 8888888888888888888888888888l            .888888888888888+'   .d888888888888888
 
-So you really wanna work on finals week? Take a break and enjoy some holiday cheer!
+
 
 Fine 007, here is your robot
 
