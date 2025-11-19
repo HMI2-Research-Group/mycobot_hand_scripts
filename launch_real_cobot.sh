@@ -4,15 +4,6 @@
 #   curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
 # }' >> ~/.bashrc
 
-# Manage temporary directory for multiple executions
-TMP_DIR="/tmp/mycobot_scripts"
-if [ -d "$TMP_DIR" ]; then
-    echo "Removing existing temporary directory..."
-    rm -rf "$TMP_DIR"
-fi
-mkdir -p "$TMP_DIR"
-cd "$TMP_DIR"
-
 echo "agx" | sudo -S killall screen
 sleep 5
 cat << 'EOF'
