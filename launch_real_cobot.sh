@@ -5,34 +5,13 @@
 # }' >> ~/.bashrc
 
 echo "agx" | sudo -S killall screen
-sleep 2
-cat << 'EOF'
-     ,-.
-     / \  `.  __..-,O
-    :   \ --''_..-'.'
-    |    . .-' `. '.
-    :     .     .`.'
-     \     `.  /  ..
-      \      `.   ' .
-       `,       `.   \
-      ,|,`.        `-.\
-     '.||  ``-...__..-`
-      |  |
-      |__|
-      /||\
-     //||\\
-    // || \\
- __//__||__\\__
-'--------------' SSt
-
+sleep 10
 Wow! Great Progress guys!! Your robot is starting up...
-EOF
+screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
+echo "Launched Lidar"
 sleep 5
 screen -S camera -dm roslaunch astra_camera dabai_u3.launch
 echo "Launched Dabai Camera"
-sleep 5
-screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
-echo "Launched Lidar"
 sleep 5
 screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
 echo "Launched Cobot Arm MoveIt"
