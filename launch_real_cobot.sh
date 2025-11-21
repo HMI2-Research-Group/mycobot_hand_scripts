@@ -61,9 +61,9 @@ George Lucas - Jedi - Death Star - R2-D2 - C-3PO - Yoda - Darth Vader
 
 So you want to run run the bot?? Darth Vader is asking why? Is it to overthrow the empire? Is it to join the dark side? Answer wisely...
 EOF
-screen -S base_teleop -dm roslaunch limo_base limo_base.launch
-sleep 10
-echo "Launched Base Teleop Controller"
+# screen -S base_teleop -dm roslaunch limo_base limo_base.launch
+# sleep 10
+# echo "Launched Base Teleop Controller"
 sleep 5
 screen -S camera -dm roslaunch astra_camera dabai_u3.launch
 echo "Launched Dabai Camera"
