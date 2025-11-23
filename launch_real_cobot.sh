@@ -7,7 +7,6 @@
 echo "agx" | sudo -S killall screen
 sleep 5
 cat << 'EOF'
-Let's get it guys!! Final showdown. You are a force to be reckonned with. You are unstoppable. Yoiu are the best and most hard working students of Santa Clara. Muchas Gracias Senor/Seniora! Por Favor! This is your time to shine!!
           |
  \     _____     /
      /       \
