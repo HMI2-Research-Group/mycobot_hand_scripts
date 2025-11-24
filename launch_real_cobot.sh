@@ -1,9 +1,4 @@
 #!/bin/bash
-# Add this to your bashrc to always run the updated code
-# echo 'start_cobot() {
-#   curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
-# }' >> ~/.bashrc
-
 echo "agx" | sudo -S killall screen
 sleep 5
 screen -S camera -dm roslaunch astra_camera dabai_u3.launch
