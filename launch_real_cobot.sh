@@ -6,24 +6,6 @@
 
 echo "agx" | sudo -S killall screen
 sleep 5
-cat << 'EOF'
-Happy Hanukkah! It's December 14th this year!!
-ooooooooooooooooooooooooo
-o    Happy Hanukkah     o
-o          ! !          o
-o        ! | | !        o
-o      ! | H H | !      o
-o    ! | H H!H H | !    o
-o    | H H H|H H H |    o
-o    (_H_H_H|H_H_H_)    o
-o     (___________)     o
-o           H           o
-o           H           o
-o           H           o
-o        ___H___        o
-ooooooooooooooooooooooooo
-EOF
-sleep 5
 screen -S camera -dm roslaunch astra_camera dabai_u3.launch
 echo "Launched Dabai Camera"
 sleep 5
@@ -35,6 +17,17 @@ echo "Launched Cobot Arm MoveIt"
 sleep 5
 screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
 echo "Launched Cobot Arm UART plan Syncer"
-sleep 2
-echo "All processes started"
+cat << 'EOF'
+Dear User, your robot is ready to fly (No it's not). 
+      .---.        .-----------
+     /     \  __  /    ------
+    / /     \(  )/    -----
+   //////   ' \/ `   ---
+  //// / // :    : ---
+ // /   /  /`    '--
+//          //..\\
+       ====UU====UU====
+           '//||\\`
+             ''``
+EOF
 echo "If something malfunctions try debugging yourself 😝👊"
