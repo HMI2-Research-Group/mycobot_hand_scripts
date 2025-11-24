@@ -25,4 +25,7 @@ Dear User, your robot is ready to fly (No it's not).
            '//||\\`
              ''``
 EOF
+check_scan
+sleep 2
+check_dabai
 echo "If something malfunctions remember this a final presentation 😝👊"
