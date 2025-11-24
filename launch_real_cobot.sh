@@ -25,4 +25,4 @@ Dear User, your robot is ready to fly (No it's not).
            '//||\\`
              ''``
 EOF
-echo "If something malfunctions try debugging yourself 😝👊"
+echo "If something malfunctions remember this a final presentation 😝👊"
