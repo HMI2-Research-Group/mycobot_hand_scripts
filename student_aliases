@@ -27,3 +27,25 @@ function backup_agx() {
   echo "Backing up ${folder} from ${host}:~/agilex_ws/src to ./{$outfile} ..."
   ssh "$host" "cd ~/agilex_ws/src && tar czf - \"$folder\"" > "$outfile"
 }
+
+push_agx() {
+  # Usage: push_agx agx47 my_remote_folder
+  local host="$1"
+  local folder="$2"
+
+  if [ -z "$host" ] || [ -z "$folder" ]; then
+    echo "Usage: push_agx <ssh_host> <remote_folder_name>"
+    echo "Example: push_agx agx47 my_folder_name"
+    return 1
+  fi
+
+  echo "Deleting remote folder ~/agilex_ws/src/$folder on $host (if it exists)..."
+  ssh "$host" "rm -rf ~/agilex_ws/src/$folder && mkdir -p ~/agilex_ws/src/$folder" || {
+    echo "Remote cleanup/creation failed."
+    return 1
+  }
+
+  echo "Syncing CURRENT LOCAL FOLDER -> $host:~/agilex_ws/src/$folder/"
+  rsync -avz ./ "$host:~/agilex_ws/src/$folder/"
+}
+
