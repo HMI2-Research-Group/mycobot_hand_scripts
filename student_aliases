@@ -28,7 +28,7 @@ function backup_agx() {
   ssh "$host" "cd ~/agilex_ws/src && tar czf - \"$folder\"" > "$outfile"
 }
 
-push_agx() {
+function push_agx() {
   # Usage: push_agx agx47 my_remote_folder
   local host="$1"
   local folder="$2"
