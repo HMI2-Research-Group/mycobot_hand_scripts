@@ -2,7 +2,7 @@
 echo "agx" | sudo -S killall screen
 sleep 5
 screen -S camera -dm roslaunch astra_camera dabai_u3.launch
-echo "Launched Dabai Camera"
+echo "Launched Dabai U3 Camera"
 sleep 5
 screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
 echo "Launched LIDAR"
