@@ -28,4 +28,3 @@ EOF
 check_scan
 sleep 2
 check_dabai
-echo "If something malfunctions remember this a final presentation 😝👊"
