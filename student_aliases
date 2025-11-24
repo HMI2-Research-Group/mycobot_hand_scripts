@@ -49,7 +49,7 @@ function push_agx() {
   rsync -avz ./ "$host:~/agilex_ws/src/$folder/"
 }
 
-check_scan() {
+function check_scan() {
   if rostopic echo -n1 /scan >/dev/null 2>&1; then
     echo "messages are getting published to /scan. LIDAR is working."
   else
@@ -57,7 +57,7 @@ check_scan() {
   fi
 }
 
-check_dabai() {
+function check_dabai() {
   if rostopic echo -n1 /camera/color/image_raw >/dev/null 2>&1; then
     echo "messages are getting published to RGB camera topic. RGB camera is working"
   else
