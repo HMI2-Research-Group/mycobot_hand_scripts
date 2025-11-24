@@ -1,0 +1,29 @@
+# To get all these function just add below line
+# source <(curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/student_aliases")
+
+function start_cobot() {
+  curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
+}
+
+function backup_agx() {
+  # Usage:
+  #   backup_agx agx47 my_folder_name
+  #   backup_agx             # -> error (needs folder)
+  #   backup_agx agx47       # -> error (needs folder)
+
+  local host="$1"
+  local folder="$2"
+
+  if [ -z "$host" ] || [ -z "$folder" ]; then
+    echo "Usage: backup_agx <ssh_host> <remote_folder_name>"
+    echo "Example: backup_agx agx47 my_folder_name"
+    return 1
+  fi
+
+  local ts
+  ts=$(date +%Y%m%d_%H%M%S)
+  local outfile="${folder}_${host}_${ts}.tar.gz"
+
+  echo "Backing up ${folder} from ${host}:~/agilex_ws/src to ./{$outfile} ..."
+  ssh "$host" "cd ~/agilex_ws/src && tar czf - \"$folder\"" > "$outfile"
+}
