@@ -84,13 +84,13 @@ function check_teleop() {
 
   # Turn a bit left
   rostopic pub -1 /cmd_vel geometry_msgs/Twist -- \
-    '[0.0, 0.0, 0.0]' '[0.0, 0.0, 0.3]'
+    '[0.0, 0.0, 0.0]' '[0.0, 0.0, 0.5]'
 
   sleep 0.5
 
   # Turn a bit right
   rostopic pub -1 /cmd_vel geometry_msgs/Twist -- \
-    '[0.0, 0.0, 0.0]' '[0.0, 0.0, -0.3]'
+    '[0.0, 0.0, 0.0]' '[0.0, 0.0, -0.5]'
 
   sleep 0.5
 
