@@ -98,6 +98,6 @@ function check_teleop() {
   rostopic pub -1 /cmd_vel geometry_msgs/Twist -- \
     '[0.0, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
 
-  echo "Wiggle test complete. Robot should now be stopped."
+  echo "Wiggle test complete. Robot should now be stopped. If it didn't move, please call the TA!"
 }
 
