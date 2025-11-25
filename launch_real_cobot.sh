@@ -28,3 +28,6 @@ EOF
 check_scan
 sleep 2
 check_dabai
+sleep 2
+check_teleop
+echo "All systems are GO!"

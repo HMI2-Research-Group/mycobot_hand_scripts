@@ -26,9 +26,9 @@ function backup_agx() {
 
   echo "Backing up ${folder} from ${host}:~/agilex_ws/src to ./{$outfile} ..."
   ssh "$host" "cd ~/agilex_ws/src && tar czf - \"$folder\"" > "$outfile"
-}
+  }
 
-function push_agx() {
+  function push_agx() {
   # Usage: push_agx agx47 my_remote_folder
   local host="$1"
   local folder="$2"
@@ -69,3 +69,35 @@ function check_dabai() {
     echo "No messages detected on Depth camera topic. Depth camera is not working. Call the TA!"
   fi
 }
+
+function check_teleop() {
+  echo "=============================================="
+  echo " TELEOP SAFETY CHECK"
+  echo "=============================================="
+  echo "1) Place the robot ON THE GROUND (not on a table)."
+  echo "2) Make sure there is some free space around it."
+  echo "3) This test will only rotate the robot in place (no linear motion)."
+  echo
+  read -p "If everything is safe, press ENTER to start the wiggle test (Ctrl+C to cancel) " _
+
+  # Small in-place wiggle: left, right, then stop
+
+  # Turn a bit left
+  rostopic pub -1 /cmd_vel geometry_msgs/Twist -- \
+    '[0.0, 0.0, 0.0]' '[0.0, 0.0, 0.3]'
+
+  sleep 0.5
+
+  # Turn a bit right
+  rostopic pub -1 /cmd_vel geometry_msgs/Twist -- \
+    '[0.0, 0.0, 0.0]' '[0.0, 0.0, -0.3]'
+
+  sleep 0.5
+
+  # Explicit stop
+  rostopic pub -1 /cmd_vel geometry_msgs/Twist -- \
+    '[0.0, 0.0, 0.0]' '[0.0, 0.0, 0.0]'
+
+  echo "Wiggle test complete. Robot should now be stopped."
+}
+
