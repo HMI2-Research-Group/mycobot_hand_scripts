@@ -1,10 +1,6 @@
 # To get all these function just add below line
 # source <(curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/student_aliases")
 
-function start_cobot() {
-  curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
-}
-
 function backup_agx() {
   # Usage:
   #   backup_agx agx47 my_folder_name
@@ -108,3 +104,6 @@ function check_teleop() {
   echo "Wiggle test complete. Robot should now be stopped. If it didn't move, please call the TA!"
 }
 
+function start_cobot() {
+  curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
+}
