@@ -100,11 +100,11 @@ function check_teleop() {
   # Small in-place wiggle: left, right, then stop
 
   # Turn a bit left
-  wiggle_1s(0.5)
+  wiggle_1s 0.5 
   # Turn a bit right
-  wiggle_1s(-0.5)
+  wiggle_1s -0.5 
   # Stop
-  wiggle_1s(0.0)
+  wiggle_1s 0.0 
   echo "Wiggle test complete. Robot should now be stopped. If it didn't move, please call the TA!"
 }
 
