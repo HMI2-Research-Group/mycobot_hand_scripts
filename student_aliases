@@ -75,9 +75,7 @@ function wiggle_1s() {
 
   end=$((SECONDS + 1))
   while [ $SECONDS -lt $end ]; do
-    rostopic pub -1 /cmd_vel geometry_msgs/Twist \
-      "linear:  {x: 0.0, y: 0.0, z: 0.0}," \
-      "angular: {x: 0.0, y: 0.0, z: $omega_z}"
+    rostopic pub /cmd_vel geometry_msgs/Twist '[0.1, 0, 0]' '[0,0,$omega_z]'
     sleep 0.05
   done
 }
