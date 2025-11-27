@@ -136,7 +136,8 @@ function start_cobot() {
                .' |_./ |      | \._| '.
               /     _.-|||  |||-._     \
               \__.-'   \||/\||/   '-.__/  
-  EOF
+  
+EOF
   check_scan
   sleep 2
   check_dabai
