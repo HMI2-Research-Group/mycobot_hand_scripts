@@ -67,17 +67,12 @@ function check_dabai() {
 }
 
 function wiggle_1s() {
-  omega_z=$1
-  if [ -z "$omega_z" ]; then
-    echo "Usage: wiggle_1s <angular_z>"
-    return 1
-  fi
+  rostopic pub /cmd_vel geometry_msgs/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 1.0}}" -1
+  sleep 1
+  rostopic pub /cmd_vel geometry_msgs/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: -1.0}}" -1
+  sleep 1
+  rostopic pub /cmd_vel geometry_msgs/Twist "{linear: {x: 0.0, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}" -1
 
-  end=$((SECONDS + 1))
-  while [ $SECONDS -lt $end ]; do
-    rostopic pub /cmd_vel geometry_msgs/Twist '[0.0, 0.0, 0.0]' '[0.0, 0.0, $omega_z]'
-    sleep 0.05
-  done
 }
 
 
@@ -94,14 +89,58 @@ function check_teleop() {
   # Small in-place wiggle: left, right, then stop
 
   # Turn a bit left
-  wiggle_1s 0.5 
-  # Turn a bit right
-  wiggle_1s -0.5 
-  # Stop
-  wiggle_1s 0.0 
+  wiggle_1s 
   echo "Wiggle test complete. Robot should now be stopped. If it didn't move, please call the TA!"
 }
 
 function start_cobot() {
-  curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/launch_real_cobot.sh" | bash
+  echo "agx" | sudo -S killall screen
+  sleep 5
+  screen -S camera -dm roslaunch astra_camera dabai_u3.launch
+  echo "Launched Dabai U3 Camera"
+  sleep 5
+  screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
+  echo "Launched LIDAR"
+  sleep 5
+  screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
+  echo "Launched Cobot Arm MoveIt"
+  sleep 5
+  screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
+  echo "Launched Cobot Arm UART plan Syncer"
+  cat << 'EOF'
+                          /\
+                         |  |
+                         |  |
+                        .'  '.
+                        |    |
+                        |    |
+                        | /\ |
+                      .' |__|'.
+                      |  |  |  |
+                     .'  |  |  '.
+                /\   |   \__/   |   /\
+               |  |  |   |  |   |  |  |
+           /|  |  |,-\   |  |   /-,|  |  |\
+           ||  |,-'   |  |  |  |   '-,|  ||
+           ||-'       |  |  |  |       '-||
+|\     _,-'           |  |  |  |           '-,_     /|
+||  ,-'   _           |  |  |  |               '-,  ||
+||-'    =(*)=         |  |  |  |                  '-||
+||                    |  \  /  |                    ||
+|\________....--------\   ||   /--------....________/|
+                      /|  ||  |\
+                     / |  ||  | \
+                    /  |  \/  |  \
+                   /   |      |   \   
+                 //   .|      |.   \\
+               .' |_./ |      | \._| '.
+              /     _.-|||  |||-._     \
+              \__.-'   \||/\||/   '-.__/  
+  EOF
+  check_scan
+  sleep 2
+  check_dabai
+  sleep 2
+  check_teleop
+  echo "All systems are GO!"
 }
