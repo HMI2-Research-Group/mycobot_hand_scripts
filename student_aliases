@@ -153,6 +153,5 @@ function start_cobot() {
   echo "To check RGB camera, run: check_camera"
   echo "To check teleop, run: check_teleop"
   echo "For more commands scan the QR code below:"
-  print_ascii_art
-  
+  print_ascii_art  
 }
