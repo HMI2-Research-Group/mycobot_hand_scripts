@@ -1,6 +1,3 @@
-# To get all these function just add below line
-# source <(curl -fsSL "https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/master/student_aliases")
-
 function backup_agx() {
   # Usage:
   #   backup_agx agx47 my_folder_name
