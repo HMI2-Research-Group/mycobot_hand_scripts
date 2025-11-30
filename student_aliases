@@ -152,6 +152,7 @@ function start_cobot() {
   echo "To check LIDAR, run: check_lidar"
   echo "To check RGB camera, run: check_camera"
   echo "To check teleop, run: check_teleop"
-  echo "For more commands scan the QR code below:"
+  echo "For more commands scan the QR code below: Generating QR Code..."
+  sleep 5
   print_ascii_art  
 }
