@@ -153,3 +153,8 @@ function start_cobot() {
   sleep 5
   print_ascii_art  
 }
+
+function stop_all_cobots(){
+  screen -S agx47_shutdown -dm ssh agx47 'echo "agx" | sudo -S shutdown -h now'
+  screen -S agx49_shutdown -dm ssh agx49 'echo "agx" | sudo -S shutdown -h now'
+}
