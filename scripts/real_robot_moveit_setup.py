@@ -117,7 +117,7 @@ class MyCobot280Operator:
             rospy.logerr(f"Error in go_to_joint_state: {str(e)}")
             return False
 
-def pick_sock_qr1():
+def pick_sock_qr(BOX_PICKUP_POSITION=None, BOX_DROP_POSITION=None):
     """
     Pick up a sock using predefined joint positions.
     Make sure to adjust the BOX_PICKUP_POSITION and BOX_DROP_POSITION for each QR code 
@@ -126,8 +126,13 @@ def pick_sock_qr1():
     operator = MyCobot280Operator()
     # Safe joint positions - adjusted to be within typical myCobot 280 joint limits
     DEFAULT_POSITION = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] # In radians
-    BOX_PICKUP_POSITION = [-2.844, 0.077, 0.833, 2.218, 0.268, 3.073] # In radians
-    BOX_DROP_POSITION = [1.33, -1.99, 1.55, 0.31, 0.26, -0.01] # In radians
+    if BOX_PICKUP_POSITION is None and BOX_DROP_POSITION is None:
+        raise ValueError("Please provide both BOX_PICKUP_POSITION and BOX_DROP_POSITION or neither.")
+        # Example joint positions for references
+        # BOX_PICKUP_POSITION = [-2.844, 0.077, 0.833, 2.218, 0.268, 3.073] # In radians
+        # BOX_DROP_POSITION = [1.33, -1.99, 1.55, 0.31, 0.26, -0.01] # In radians
+    
+        
     # Move to initial pose
     operator.open_gripper()
     print("Going to default position")
