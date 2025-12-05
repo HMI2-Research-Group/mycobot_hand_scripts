@@ -167,6 +167,6 @@ def pick_sock_qr(BOX_PICKUP_POSITION=None, BOX_DROP_POSITION=None):
 if __name__ == "__main__":
     rospy.init_node("mycobot280_operator", anonymous=True)
     moveit_commander.roscpp_initialize([])
-    pick_sock_qr1()
+    pick_sock_qr()
     
    
