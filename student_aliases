@@ -1,3 +1,9 @@
+# Add this to your .bashrc
+# source <(curl -fsSL https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/refs/heads/master/student_aliases)
+# Add this to crontab
+# @reboot sleep 60 && start_cobot
+# 0 17,20 * * * zenity --warning --text="Backup data now else it might be deleted" && sleep 300 && echo agx | sudo -S shutdown -h now
+# Make sure you have installed zenity, sudo apt-get install zenity
 function backup_agx() {
   # Usage:
   #   backup_agx agx47 my_folder_name
@@ -129,11 +135,19 @@ function start_cobot() {
   screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
   echo "Launched LIDAR"
   sleep 5
-  screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
-  echo "Launched Cobot Arm MoveIt"
-  sleep 5
-  screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
-  echo "Launched Cobot Arm UART plan Syncer"
+  if [[ "$1" == "read_joint_angles" ]]; then
+    screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
+    echo "Launched Cobot Arm MoveIt"
+    sleep 5
+    screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
+    echo "Launched Cobot Arm UART plan Syncer"
+  else
+    screen -S slider -dm roslaunch mycobot_280 slider_control.launch
+    echo "Launched Cobot Arm Slider Control"
+    sleep 5
+    screen -S slider_uart -dm rosrun mycobot_280 slider_control.py _port:=/dev/ttyACM0 _baud:=115200
+    echo "Launched Cobot Arm Slider UART"
+  fi
   check_lidar
   sleep 2
   check_camera
