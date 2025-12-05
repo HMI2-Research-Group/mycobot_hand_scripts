@@ -156,8 +156,9 @@ def pick_sock_qr1():
         print("Successfully moved to box drop position")
     else:
         print("Failed to move to box drop position")
-    del operator
     sleep(2)
+    del operator
+    
 
 if __name__ == "__main__":
     rospy.init_node("mycobot280_operator", anonymous=True)
