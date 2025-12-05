@@ -17,5 +17,5 @@ if __name__ == "__main__":
     angles_rad = angles * (pi / 180.0)  # convert to radians
     print("Current Joint Angles (radians): \n", angles_rad)
     mc.release_all_servos()  # release the servos after getting angles
-    print("Use Radians for MoveIt! planning.")
+    print("Use above Radians only for MoveIt! planning.")
 
