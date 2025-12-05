@@ -2,7 +2,6 @@ from math import pi
 from time import sleep
 
 import rospy
-import actionlib
 import moveit_msgs.msg
 import moveit_commander
 import geometry_msgs.msg
