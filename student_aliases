@@ -155,6 +155,9 @@ function start_cobot() {
 }
 
 function stop_all_cobots() {
+  screen -S agx46_shutdown -dm ssh agx46 'echo agx | sudo -S shutdown -h now'
   screen -S agx47_shutdown -dm ssh agx47 'echo agx | sudo -S shutdown -h now'
+  screen -S agx48_shutdown -dm ssh agx48 'echo agx | sudo -S shutdown -h now'
   screen -S agx49_shutdown -dm ssh agx49 'echo agx | sudo -S shutdown -h now'
+  screen -S agx74_shutdown -dm ssh agx74 'echo agx | sudo -S shutdown -h now'
 }
