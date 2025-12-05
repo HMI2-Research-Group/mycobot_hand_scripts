@@ -141,7 +141,7 @@ function start_cobot() {
     screen -S slider_uart -dm rosrun mycobot_280 slider_control.py _port:=/dev/ttyACM0 _baud:=115200
     echo "Launched Cobot Arm Slider Control UART Syncer"
   else
-    screen -S cobot_arm_moveit -dm roslaunch mycobot_280 mycobot_follow.launch
+    screen -S cobot_arm_moveit -dm roslaunch limo_cobot_moveit_config demo.launch
     echo "Launched Cobot Arm MoveIt"
     sleep 5
     screen -S cobot_arm_uart -dm rosrun mycobot_280_moveit sync_plan.py _port:=/dev/ttyACM0 _baud:=115200
