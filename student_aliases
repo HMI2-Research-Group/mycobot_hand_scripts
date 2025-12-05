@@ -138,6 +138,7 @@ function start_cobot() {
   if [[ "$1" == "read_joint_angles" ]]; then    
     screen -S slider -dm roslaunch mycobot_280 slider_control.launch port:=/dev/ttyACM0 baud:=115200
     echo "Launched Cobot Arm Slider Control"
+    screen -S slider_uart -dm rosrun mycobot_280 slider_control.py _port:=/dev/ttyACM0 _baud:=115200
   else
     screen -S cobot_arm_moveit -dm roslaunch mycobot_280 mycobot_follow.launch
     echo "Launched Cobot Arm MoveIt"
