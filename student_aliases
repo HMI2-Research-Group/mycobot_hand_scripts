@@ -135,18 +135,19 @@ function start_cobot() {
   screen -S lidar -dm roslaunch limo_bringup limo_start.launch pub_odom_tf:=false 
   echo "Launched LIDAR"
   sleep 5
-  if [[ "$1" == "read_joint_angles" ]]; then
-    screen -S cobot_arm_moveit -dm roslaunch mycobot_280 mycobot_follow.launch
-    echo "Launched Cobot Arm MoveIt"
-    sleep 5
-    screen -S cobot_arm_uart -dm rosrun mycobot_280 follow_display.py _port:=/dev/ttyACM0 _baud:=115200
-    echo "Launched Cobot Arm UART plan Syncer"
-  else
+  if [[ "$1" == "read_joint_angles" ]]; then    
     screen -S slider -dm roslaunch mycobot_280 slider_control.launch
     echo "Launched Cobot Arm Slider Control"
     sleep 5
     screen -S slider_uart -dm rosrun mycobot_280 slider_control.py _port:=/dev/ttyACM0 _baud:=115200
     echo "Launched Cobot Arm Slider UART"
+  else
+    screen -S cobot_arm_moveit -dm roslaunch mycobot_280 mycobot_follow.launch
+    echo "Launched Cobot Arm MoveIt"
+    sleep 5
+    screen -S cobot_arm_uart -dm rosrun mycobot_280 follow_display.py _port:=/dev/ttyACM0 _baud:=115200
+    echo "Launched Cobot Arm UART plan Syncer"
+    
   fi
   check_lidar
   sleep 2
