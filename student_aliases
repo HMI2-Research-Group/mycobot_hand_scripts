@@ -2,7 +2,7 @@
 # source <(curl -fsSL https://raw.githubusercontent.com/HMI2-Research-Group/mycobot_hand_scripts/refs/heads/master/student_aliases)
 # Add this to crontab
 # @reboot sleep 60 && start_cobot
-# 0 17,20 * * * zenity --warning --text="Backup data now else it might be deleted" && sleep 300 && echo agx | sudo -S shutdown -h now
+# 45 16,19 * * * zenity --warning --text="Backup data under 5 minutes" && sleep 600 && echo agx | sudo -S shutdown -h now
 # Make sure you have installed zenity, sudo apt-get install zenity
 function backup_agx() {
   # Usage:
@@ -174,4 +174,12 @@ function stop_all_cobots() {
   screen -S agx48_shutdown -dm ssh agx48 'echo agx | sudo -S shutdown -h now'
   screen -S agx49_shutdown -dm ssh agx49 'echo agx | sudo -S shutdown -h now'
   screen -S agx74_shutdown -dm ssh agx74 'echo agx | sudo -S shutdown -h now'
+}
+
+function open_cobot_wins() {
+  terminator -x bash -lc 'ssh agx@agx46; exec bash' &
+  terminator -x bash -lc 'ssh agx@agx47; exec bash' &
+  terminator -x bash -lc 'ssh agx@agx48; exec bash' &
+  terminator -x bash -lc 'ssh agx@agx49; exec bash' &
+  terminator -x bash -lc 'ssh agx@agx74; exec bash' &
 }
