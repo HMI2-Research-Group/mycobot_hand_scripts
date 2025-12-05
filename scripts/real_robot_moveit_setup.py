@@ -129,9 +129,8 @@ def pick_sock_qr1():
     DEFAULT_POSITION = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0] # In radians
     BOX_PICKUP_POSITION = [-2.844, 0.077, 0.833, 2.218, 0.268, 3.073] # In radians
     BOX_DROP_POSITION = [1.33, -1.99, 1.55, 0.31, 0.26, -0.01] # In radians
-
-    operator.open_gripper()
     # Move to initial pose
+    operator.open_gripper()
     print("Going to default position")
     if operator.go_to_joint_state(DEFAULT_POSITION):
         print("Successfully moved to initial pose")
@@ -147,7 +146,6 @@ def pick_sock_qr1():
     sleep(2)
     operator.close_gripper()
     sleep(2)
-
     # Move to drop box 1
     print("Moving to drop Jenga")
     if operator.go_to_joint_state(DEFAULT_POSITION):
